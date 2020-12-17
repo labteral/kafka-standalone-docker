@@ -8,7 +8,7 @@ x-logging: &default-logging
 
 services:
   kafka:
-    image: kafka
+    image: labteral/kafka-standalone
     volumes:
       - ./data/kafka/logs:/data/kafka
       - ./config/server.properties:/opt/kafka/default/config/server.properties:ro
