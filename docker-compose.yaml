@@ -1,0 +1,24 @@
+version: "3.4"
+
+x-logging: &default-logging
+  options:
+    max-size: "10m"
+    max-file: "1"
+  driver: json-file
+
+services:
+
+  kafka:
+    image: kafka
+    volumes:
+      - ./data/kafka/logs:/data/kafka
+      - ./config/server.properties:/opt/kafka/default/config/server.properties:ro
+      - ./data/zookeeper/logs:/data/zookeeper
+      - ./config/zookeeper.properties:/opt/kafka/default/config/zookeeper.properties:ro
+      - ./data/logs:/opt/kafka/default/logs
+    ports:
+      - 19092:19092
+      - 9092:9092
+      - 2181:2181
+    logging: *default-logging
+    restart: always
